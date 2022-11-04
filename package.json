@@ -1,11 +1,22 @@
 {
-  "name": "forkify",
+  "name": "tastyfy",
   "version": "1.0.0",
   "description": "Receipe application",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "author": "José González",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/placeteno/Tastyfy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/placeteno/Tastyfy/issues"
+  },
+  "homepage": "https://github.com/placeteno/Tastyfy#readme",
+  "devDependencies": {
+    "parcel": "^2.7.0"
+  }
 }
