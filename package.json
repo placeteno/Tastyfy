@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/placeteno/Tastyfy#readme",
   "devDependencies": {
-    "parcel": "^2.7.0"
+    "@parcel/transformer-image": "^2.0.0-rc.0",
+    "parcel": "^2.0.0-rc.0"
   }
 }
