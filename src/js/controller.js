@@ -13,7 +13,7 @@ const timeout = function (s) {
 // https://forkify-api.herokuapp.com/v2
 
 ///////////////////////////////////////
-
+// Study
 const renderSpinner = function (parentEl) {
   const markup = `
     <div class="spinner">
