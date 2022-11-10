@@ -12,7 +12,6 @@ const timeout = function (s) {
 // https://forkify-api.herokuapp.com/v2
 
 ///////////////////////////////////////
-// Study
 
 const showRecipe = async function () {
   try {
