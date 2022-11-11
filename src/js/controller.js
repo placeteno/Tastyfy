@@ -30,4 +30,9 @@ const showRecipe = async function () {
 };
 
 // When we are listening for multiple events that will call the same function several times, it's better to have an array of those possible events and loop over them.
-["hashchange", "load"].forEach((ev) => window.addEventListener(ev, showRecipe));
+// ["hashchange", "load"].forEach((ev) => window.addEventListener(ev, showRecipe));
+
+const init = function () {
+  recipeView.addHandlerRender(showRecipe);
+};
+init();
