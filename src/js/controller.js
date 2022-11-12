@@ -1,14 +1,6 @@
 import * as model from "./model.js";
 import recipeView from "./views/recipeView.js";
 
-const timeout = function (s) {
-  return new Promise(function (_, reject) {
-    setTimeout(function () {
-      reject(new Error(`Request took too long! Timeout after ${s} second`));
-    }, s * 1000);
-  });
-};
-
 // https://forkify-api.herokuapp.com/v2
 
 ///////////////////////////////////////
@@ -25,12 +17,12 @@ const showRecipe = async function () {
     // 2) Rendering recipe
     recipeView.render(model.state.recipe);
   } catch (err) {
-    console.log(err);
+    recipeView.renderError();
   }
 };
 
 // When we are listening for multiple events that will call the same function several times, it's better to have an array of those possible events and loop over them.
-// ["hashchange", "load"].forEach((ev) => window.addEventListener(ev, showRecipe));
+// ["hashchange", "load"].forEach((ev) => window.addEventListener(ev, showRecipe)); --> moved to VIEW
 
 const init = function () {
   recipeView.addHandlerRender(showRecipe);
