@@ -3,13 +3,14 @@ import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
+import bookmarksView from './views/bookmarksView.js';
 
 // This code below is so that the app does not to reload over and over
 // if (module.hot) {
 //   module.hot.accept();
 // }
 
-const showRecipe = async function () {
+const controlRecipe = async function () {
   try {
     const id = window.location.hash.slice(1);
     if (!id) return;
@@ -54,12 +55,34 @@ const controlPagination = function (goToPage) {
   paginationView.render(model.state.search);
 };
 
-// When we are listening for multiple events that will call the same function several times, it's better to have an array of those possible events and loop over them.
-// ["hashchange", "load"].forEach((ev) => window.addEventListener(ev, showRecipe)); --> moved to VIEW
+const controlServings = function (newServings) {
+  // Update recipe servings (in state)
+  model.updateServings(newServings);
+
+  // Update the recipe view
+  recipeView.render(model.state.recipe);
+};
+
+const controlAddBookmark = function () {
+  // 1) Add/remove bookmark
+  if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
+  else model.deleteBookmark(model.state.recipe.id);
+
+  // 2) Update recipe view
+  recipeView.render(model.state.recipe);
+
+  // 3) Render bookmarks
+  bookmarksView.render(model.state.bookmarks);
+};
 
 const init = function () {
-  recipeView.addHandlerRender(showRecipe);
+  recipeView.addHandlerRender(controlRecipe);
+  recipeView.addHandlerUpdateServings(controlServings);
+  recipeView.addHandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
 };
 init();
+
+// When we are listening for multiple events that will call the same function several times, it's better to have an array of those possible events and loop over them.
+// ["hashchange", "load"].forEach((ev) => window.addEventListener(ev, showRecipe)); --> moved to VIEW
